@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>낱말완성퀴즈</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<style>
+
+	</style>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>	
+	<script>
+		function clickedText(e) {
+			const textArea = document.querySelector('#textArea');
+			let currentText = e.currentTarget.innerText;
+			textArea.value = currentText;
+		}
+	</script>
+</head>
+
+<body>
+	<container>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">한글 퀴즈</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="wordquiz1.html">낱말완성퀴즈</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="wordquiz2.html">문장퀴즈</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="wordquiz3.html">자음모음조합퀴즈</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class='text-center m-3'>
+			<h1>인디스쿨 퀴즈</h1>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="card col-sm m-2" style="width: 18rem;">
+					<img src="img/wordquiz1.png" class="card-img-top" alt="...">
+					<div class="card-body border-top">
+						<h5 class="card-title">✅ 낱말 완성 퀴즈</h5>
+						<p class="card-text">빈 칸에 들어갈 낱글자를 찾아 낱말을 완성하는 퀴즈</p>
+						<div style="text-align: right;"><a href="wordquiz1.html" class="btn btn-primary">Go</a></div>
+					</div>
+				</div>
+				<div class="card col-sm m-2" style="width: 18rem;">
+					<img src="img/wordquiz2.png" class="card-img-top" alt="...">
+					<div class="card-body border-top">
+						<h5 class="card-title">✅ 문장 퀴즈</h5>
+						<p class="card-text">무작위로 흩어진 낱글자들을 조합하여 하나의 문장을 완성하는 퀴즈</p>
+						<div style="text-align: right;"><a href="wordquiz2.html" class="btn btn-primary">Go</a></div>
+					</div>
+				</div>
+				<div class="card col-sm m-2" style="width: 18rem;">
+					<img src="img/wordquiz3.png" class="card-img-top" alt="...">
+					<div class="card-body border-top">
+						<h5 class="card-title">✅ 자음 모음 조합 퀴즈</h5>
+						<p class="card-text">하나씩 분리된 자음 모음 카드들을 조합하여 하나의 낱말을 완성하는 퀴즈</p>
+						<div style="text-align: right;"><a href="wordquiz3.html" class="btn btn-primary">Go</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

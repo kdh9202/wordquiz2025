@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>낱말완성퀴즈</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<style>
+		:root {
+			--card-width: 100px;
+			--card-margin: 20px;
+		}
+
+		.problemcontainer {
+			display: grid;
+			/*justify-content: space-around;*/
+			width: 100%;
+			height: 40vh;
+			align-items: center;
+			justify-items: center;
+			grid-template-columns: repeat(auto-fit, minmax(20%, auto));
+
+		}
+
+		.answerArea {
+			display: flex;
+			/*justify-content: space-around;*/
+			width: 100%;
+			height: 40vh;
+			align-items: center;
+			justify-content: center;
+			grid-template-columns: repeat(auto-fit, minmax(10%, auto));
+			grid-gap: 1rem;
+		}
+
+		.card {
+			display: table;
+			width: var(--card-width);
+			height: var(--card-width);
+			border-style: none;
+			font-size: 4rem;
+			text-align: center;
+			cursor: pointer;
+			perspective: calc(var(--card-width)*4);
+		}
+
+		.anCard {
+			display: table;
+			width: var(--card-width);
+			height: var(--card-width);
+			font-size: 4rem;
+			text-align: center;
+			perspective: calc(var(--card-width)*4);
+		}
+
+		.card-inner,
+		.anCard-inner {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			transition: transform 0.8s;
+			transform-style: preserve-3d;
+		}
+
+		.card.flipped .card-inner,
+		.anCard.flipped .anCard-inner {
+			transform: rotateY(180deg);
+		}
+
+		.card-front,
+		.card-back {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border-radius: 20%;
+			background: rgb(194, 194, 194);
+			box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.5);
+			backface-visibility: hidden;
+		}
+
+		.anCard-front,
+		.anCard-back {
+			position: absolute;
+			border: 2px solid black;
+			width: 100%;
+			height: 100%;
+			border-radius: 20%;
+			background: rgb(238, 255, 142);
+			box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.5);
+			backface-visibility: hidden;
+		}
+
+		.card-back,
+		.anCard-back {
+			transform: rotateY(180deg);
+		}
+
+		.openAnswerBtn {
+			opacity: 0.5;
+			border: 1px solid darkgray;
+			background: gray;
+			width: 150px;
+			height: 50px;
+			transition: opacity 0.3s ease-in;
+			font-size: 2em;
+			text-align: center;
+			position: absolute;
+			bottom: 25px;
+			right: 25px;
+			cursor: pointer;
+		}
+
+		.openAnswerBtn:hover {
+			opacity: 1;
+		}
+
+		.hide {
+			display: none;
+		}
+		
+	</style>	
+	<script>
+		function clickedText(e) {
+			const textArea = document.querySelector('#textArea');
+			let currentText = e.currentTarget.innerText;
+			textArea.value = currentText;
+		}
+	</script>
+</head>
+
+<body>
+	<container>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html">한글 퀴즈</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="wordquiz1.html">낱말완성퀴즈</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="wordquiz2.html">문장퀴즈</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="wordquiz3.html">자음모음조합퀴즈</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class='text-center m-3'>
+			<h1>낱말 완성 퀴즈 <span class="badge rounded-pill bg-secondary">문제 만들기</span></h1>
+		</div>
+
+		<div class="d-grid col-8 mx-auto">
+			<div class="alert alert-secondary">
+				<ul>
+					<li>문제에 사용될 글자를 <u><b>쉼표로 구분</b></u>하여 입력하세요.</li>
+					<li>맨 끝에 쉼표(,)나 마침표(.) 찍지 않기. 3~5글자 낱말 권장</li>
+					<li>입력이 완료되면 아래의 [문제만들기] 버튼을 클릭하세요.</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="d-grid col-8 mx-auto mb-3">
+			<textarea id='textArea' class="form-control" rows="3" placeholder="예시) 초등학교, 수학시간, 카멜레온, 수학여행 등"></textarea>
+		</div>
+		<div class="col-8 mx-auto">
+			<div class="col-12" style="text-align: right;">
+				
+					<button type="button" class="btn btn-secondary" id="loadGoogleSpreadSheetBtn">불러오기</button>
+					<button type="button" class="btn btn-warning" id="google-submit">저장하기</button>
+					<button type="button" class="btn btn-danger" id="userQuizInputBtn">문제만들기</button>
+					<button type="button" class="btn btn-primary" id="letsPlayBtn" data-bs-toggle="modal"
+						data-bs-target="#playModal">😀 PLAY 😀</button>
+				
+			</div>
+		</div>
+		<div class="d-grid col-8 mx-auto m-3">
+			<div class="list-group" id="loadListgroupArea">
+				<li class="list-group-item list-group-item-secondary"><b>저장된 문제</b></li>
+				<a href="javascript:void(0);" onclick="clickedText(event)" class="list-group-item list-group-item-action">초등학교,
+					수학시간, 카멜레온, 수학여행</a>
+			</div>
+		</div>
+	</container>
+
+	<div class="modal fade" id="playModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">낱말 완성 퀴즈</h5>
+					<button type="button" class="btn-close" id="btnCloseModal" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				
+				<div class="modal-body">
+					<!--모달창 안에 들어갈 내용-->
+					<div class="problemcontainer"></div>
+            <div class="answerArea">
+            </div>
+						<div class="col-12" style="text-align: right;">
+							<button type="button" class="btn btn-success btn-lg nextBtn hide">다음문제</button>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" id="btnCloseModal2" data-bs-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
+	<script src="wordquiz1.js"></script>
+	<script src="jquery-3.5.1.min.js"></script>
+	<script src="loadGoogleSpreadSheet.js"></script>
+	<script src="savetoGoogleSpreadSheet.js"></script>
+</body>
+
+</html>
