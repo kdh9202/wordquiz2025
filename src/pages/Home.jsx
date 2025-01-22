@@ -41,9 +41,9 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-white pt-14 flex items-center">
-        <div className="w-full">
-          <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="min-h-screen bg-white pt-14">
+        <div className="fixed inset-0 bg-white overflow-hidden pt-14">
+          <div className="max-w-5xl mx-auto px-4 py-12">
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
                 한글 학습 퀴즈
@@ -53,63 +53,61 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {quizzes.map(quiz => (
-                  <Link
-                    key={quiz.path}
-                    to={quiz.path}
-                    className="group block"
-                  >
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-200 group-hover:scale-105">
-                      <div className={`bg-gradient-to-r ${quiz.color} p-6 flex justify-center items-center text-white`}>
-                        {quiz.icon}
-                      </div>
-                      <div className="p-6">
-                        <h2 className="text-xl font-bold text-gray-900 mb-2">
-                          {quiz.title}
-                        </h2>
-                        <p className="text-gray-600">
-                          {quiz.description}
-                        </p>
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {quizzes.map(quiz => (
+                <Link
+                  key={quiz.path}
+                  to={quiz.path}
+                  className="group block h-full"
+                >
+                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-200 group-hover:scale-105 h-full flex flex-col">
+                    <div className={`bg-gradient-to-r ${quiz.color} p-6 flex justify-center items-center text-white`}>
+                      {quiz.icon}
                     </div>
-                  </Link>
-                ))}
-              </div>
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h2 className="text-xl font-bold text-gray-900 mb-2">
+                        {quiz.title}
+                      </h2>
+                      <p className="text-gray-600 flex-1">
+                        {quiz.description}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
 
-              <div className="mt-16 text-center">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  사용 방법
-                </h2>
-                <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <div className="text-blue-600 mb-4">
-                      <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                    </div>
-                    <h3 className="font-bold mb-2">1. 문제 입력</h3>
-                    <p className="text-sm text-gray-600">원하는 단어나 문장을 입력하고 시작 버튼을 클릭하세요.</p>
+            <div className="mt-16 text-center">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                사용 방법
+              </h2>
+              <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-gray-50 rounded-xl p-6">
+                  <div className="text-blue-600 mb-4">
+                    <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
                   </div>
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <div className="text-blue-600 mb-4">
-                      <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <h3 className="font-bold mb-2">2. 퀴즈 풀기</h3>
-                    <p className="text-sm text-gray-600">제시된 카드를 보고 정답을 맞혀보세요.</p>
+                  <h3 className="font-bold mb-2">1. 문제 입력</h3>
+                  <p className="text-sm text-gray-600">원하는 단어나 문장을 입력하고 시작 버튼을 클릭하세요.</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-6">
+                  <div className="text-blue-600 mb-4">
+                    <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                   </div>
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <div className="text-blue-600 mb-4">
-                      <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <h3 className="font-bold mb-2">3. 저장하기</h3>
-                    <p className="text-sm text-gray-600">자주 사용하는 문제는 저장하여 다음에도 사용할 수 있습니다.</p>
+                  <h3 className="font-bold mb-2">2. 퀴즈 풀기</h3>
+                  <p className="text-sm text-gray-600">제시된 카드를 보고 정답을 맞혀보세요.</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-6">
+                  <div className="text-blue-600 mb-4">
+                    <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                   </div>
+                  <h3 className="font-bold mb-2">3. 저장하기</h3>
+                  <p className="text-sm text-gray-600">자주 사용하는 문제는 저장하여 다음에도 사용할 수 있습니다.</p>
                 </div>
               </div>
             </div>
