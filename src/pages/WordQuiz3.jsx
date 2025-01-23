@@ -187,29 +187,16 @@ export default function WordQuiz3() {
 
   // 퀴즈 생성하기
   const createQuiz = () => {
-    // 문장 처리: 쉼표로 구분하고 각 문장의 앞뒤 공백 제거
     const wordList = words
       .split(',')
       .map(word => word.trim())
-      .filter(word => {
-        if (!word) return false
-        if (word.length < 2) return false
-        if (/[.,]$/.test(word)) return false
-        return true
-      })
+      .filter(word => word)
 
     if (wordList.length === 0) {
       openModal({
         title: '입력 오류',
-        message: '단어를 입력해주세요!'
-      })
-      return
-    }
-
-    if (wordList.length < 2) {
-      openModal({
-        title: '입력 오류',
-        message: '최소 2개 이상의 단어를 입력해주세요!'
+        message: '단어를 입력해주세요!',
+        onConfirm: closeModal
       })
       return
     }

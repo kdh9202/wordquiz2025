@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBUVDId1MQDMbqZ3xpi8qGrAR7VPsTNfz4",
-  authDomain: "word-quiz-fca02.firebaseapp.com",
-  projectId: "word-quiz-fca02",
-  storageBucket: "word-quiz-fca02.firebasestorage.app",
-  messagingSenderId: "985797147166",
-  appId: "1:985797147166:web:d959328a4625bc893a8c0f",
-  "site": "word-quiz-fca02-a7817",
+  apiKey: "AIzaSyCVfDjPf361KJuOMc1pIdJii6BOe7jEv9I",
+  authDomain: "word-quiz-e531a.firebaseapp.com",
+  projectId: "word-quiz-e531a",
+  storageBucket: "word-quiz-e531a.firebasestorage.app",
+  messagingSenderId: "362531799820",
+  appId: "1:362531799820:web:98bd57016f34f9c0d33f29",
+  measurementId: "G-XR7EP8Y775"
 };
 
 // Initialize Firebase
